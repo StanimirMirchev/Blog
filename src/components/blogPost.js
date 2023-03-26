@@ -4,7 +4,7 @@ export const BlogPost = ({
     shortDescription
 }) => {
     return (
-        <div>
+        <div className="blog-post">
             <div>{name}</div>
             <div>{shortDescription}</div>
         </div>
