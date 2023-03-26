@@ -3,10 +3,11 @@ export const BlogPost = ({
     name,
     shortDescription
 }) => {
+
     return (
         <div className="blog-post">
-            <div>{name}</div>
-            <div>{shortDescription}</div>
+            <div className="blog-post_title">{name}</div>
+            <div className="blog-post_description">{shortDescription}</div>
         </div>
     );
 };

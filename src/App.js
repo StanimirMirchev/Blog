@@ -16,6 +16,7 @@ function App() {
         <Route path='/new' element={<CreatePostDialog />} />
         <Route path='/posts' element={<BlogPostsList />} />
       </Routes>
+      
     </div>
   );
 }
