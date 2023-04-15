@@ -1,23 +1,46 @@
 import { useState } from 'react';
 import { collection, addDoc } from "firebase/firestore"; 
-
+import {useNavigate} from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, serverTimestamp } from "firebase/firestore";
+
+import { db } from "../firebase";
 
 export const CreatePostDialog = () => {
-    
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         postName: '',
         shortDescription: ''
     });
     
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
 
-        console.log(values);
-        
-        createPost();
+        if(values["postName"] && values["shortDescription"]) {
+            console.log(values);
+            //createPost();
 
+            try {
+                await addDoc(collection(db, "blogs"), {
+                  ...values,
+                  timestamp: serverTimestamp(),
+                  author: "Test",
+                  userId: "TestUserId"
+                });
+
+              } catch(err) {
+                console.log(err);
+              }
+
+
+        } else {
+            console.log("All fields are mandatory!")
+        }
+        
+        console.log(values);
+
+        navigate("/");
     };
 
     const createPost = async () => {
@@ -41,6 +64,8 @@ export const CreatePostDialog = () => {
           });
           console.log("Document written with ID: ", docRef.id);
     };
+
+    
 
     const onChangeHandler = (e) => {
         setValues(state => ({...state, [e.target.name]: e.target.value}));

@@ -4,9 +4,15 @@
     margin: 5px;
     padding: 10px;
     width: 30%;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 1px rgb(128, 7, 142), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .blog-post_title {
     font-weight: bold;
     text-align: center;
+    overflow-wrap: break-word;
+}
+
+.blog-post_description {
+    overflow-wrap: break-word;
 }
